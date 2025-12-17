@@ -1,0 +1,11 @@
+idf_component_register(SRCS "src/kem.c" 
+                            "src/indcpa.c" 
+                            "src/poly.c" 
+                            "src/polyvec.c" 
+                            "src/ntt.c" 
+                            "src/cbd.c" 
+                            "src/reduce.c" 
+                            "src/verify.c" 
+                            "src/fips202.c"
+                            "src/randombytes.c"
+                       INCLUDE_DIRS "include")
