@@ -13,13 +13,13 @@ To implement a Hybrid Cryptosystem on an ESP32, using Kyber-768 for quantum-resi
 - SRAM: 520 KB
 - TRNG: Integrated hardware True Random Number Generator.
 
-## Current Milestone: Component Integration
+## Current Milestone: Functional PQC Core
 
 - [x] Environment setup (ESP-IDF / VS Code).
 - [x] Hardware AES vs. Software AES baseline established.
-- [x] PQClean Kyber-768 integrated as an ESP-IDF component (libpq).
-- [x] Hardware TRNG bridged to randombytes.
-- [x] Successful project-wide compilation.
+- [x] PQClean Kyber-768 integrated as an ESP-IDF component (`libpq`).
+- [x] Hardware TRNG bridged to `randombytes`.
+- [x] Successful runtime execution: Kyber-768 KeyPair generation (32KB stack task).
 
 ## How to Build
 
