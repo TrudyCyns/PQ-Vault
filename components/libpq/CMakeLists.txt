@@ -8,4 +8,5 @@ idf_component_register(SRCS "src/kem.c"
                             "src/verify.c" 
                             "src/fips202.c"
                             "src/randombytes.c"
+                            "src/symmetric-shake.c"
                        INCLUDE_DIRS "include")
