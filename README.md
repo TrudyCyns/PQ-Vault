@@ -1,32 +1,30 @@
-# _Sample project_
+# PQ-Secure IoT Vault
 
-(See the README.md file in the upper level 'examples' directory for more information about examples.)
+A project focused on implementing and benchmarking Post-Quantum Cryptography (PQC) on resource-constrained IoT devices.
 
-This is the simplest buildable example. The example is used by command `idf.py create-project`
-that copies the project to user specified path and set it's name. For more information follow the [docs page](https://docs.espressif.com/projects/esp-idf/en/latest/api-guides/build-system.html#start-a-new-project)
+## The IoT Use Case: Secure Remote Sensing
 
+To implement a Hybrid Cryptosystem on an ESP32, using Kyber-768 for quantum-resistant key encapsulation (KEM) and AES-256 for secure data encryption.
 
+### The Scenario
 
-## How to use example
-We encourage the users to use the example as a template for the new projects.
-A recommended way is to follow the instructions on a [docs page](https://docs.espressif.com/projects/esp-idf/en/latest/api-guides/build-system.html#start-a-new-project).
+1. **Identity & Key Exchange**: The ESP32 (Sensor Node) generates a Kyber-768 keypair.
+2. **PQ-Handshake**: A remote server encapsulates a session key using the node's public key.
+3. **Hybrid Encryption**: The node decapsulates the key and uses it to establish an AES-256 encrypted tunnel.
+4. **Secure Transmission**: Sensor data (Temperature, Humidity, etc.) is sent through the tunnel, protected by both PQC (against quantum attacks) and AES (for efficient symmetric encryption).
 
-## Example folder contents
+## Hardware Specifications
 
-The project **sample_project** contains one source file in C language [main.c](main/main.c). The file is located in folder [main](main).
+- Device: LOLIN32 (ESP32-WROOM-32)
+- Processor: Dual-core 32-bit Xtensa LX6 (240MHz)
+- SRAM: 520 KB (Optimized via 32KB dedicated PQC task stack)
+- TRNG: Integrated hardware True Random Number Generator.
+- Security Logic: Hybrid System (Kyber-768 KEM + AES-256 CBC)
 
-ESP-IDF projects are built using CMake. The project build configuration is contained in `CMakeLists.txt`
-files that provide set of directives and instructions describing the project's source files and targets
-(executable, library, or both). 
+## Current Milestone: Functional PQC Core
 
-Below is short explanation of remaining files in the project folder.
-
-```
-├── CMakeLists.txt
-├── main
-│   ├── CMakeLists.txt
-│   └── main.c
-└── README.md                  This is the file you are currently reading
-```
-Additionally, the sample project contains Makefile and component.mk files, used for the legacy Make based build system. 
-They are not used or needed when building with CMake and idf.py.
+- [x] Environment setup (ESP-IDF / VS Code).
+- [x] Hardware AES vs. Software AES baseline established.
+- [x] PQClean Kyber-768 integrated as an ESP-IDF component (`libpq`).
+- [x] Hardware TRNG bridged to `randombytes`.
+- [x] Successful runtime execution: Kyber-768 KeyPair generation (32KB stack task).
