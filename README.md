@@ -21,10 +21,22 @@ To implement a Hybrid Cryptosystem on an ESP32, using Kyber-768 for quantum-resi
 - TRNG: Integrated hardware True Random Number Generator.
 - Security Logic: Hybrid System (Kyber-768 KEM + AES-256 CBC)
 
+## Benchmarks
+
+| Operation | Algorithm | Execution Time |
+| -------- | -------- | -------- |
+| Key Generation | Kyber-768 | 13.99 ms |
+| Encapsulation | Kyber-768 | 19.16ms |
+| Decapsulation | Kyber-768 | 21.26ms |
+| AES-256 (HW) | AES-256 | Pending |
+
 ## Current Milestone: Functional PQC Core
 
 - [x] Environment setup (ESP-IDF / VS Code).
-- [x] Hardware AES vs. Software AES baseline established.
 - [x] PQClean Kyber-768 integrated as an ESP-IDF component (`libpq`).
 - [x] Hardware TRNG bridged to `randombytes`.
 - [x] Successful runtime execution: Kyber-768 KeyPair generation (32KB stack task).
+- [x] KeyGen performance documented (`~14ms`).
+- [x] Full Kyber-768 Handshake (KEM) verified on hardware.
+- [x] Shared secrets match across Encap/Decap.
+- [x] Loopback test stable at 240MHz with 32KB stack.
