@@ -25,10 +25,21 @@ To implement a Hybrid Cryptosystem on an ESP32, using Kyber-768 for quantum-resi
 
 | Operation | Algorithm | Execution Time |
 | -------- | -------- | -------- |
-| Key Generation | Kyber-768 | 13.99 ms |
-| Encapsulation | Kyber-768 | 19.16ms |
-| Decapsulation | Kyber-768 | 21.26ms |
-| AES-256 (HW) | AES-256 | Pending |
+| Key Generation | Kyber-768 | ~13.99 ms |
+| Encapsulation | Kyber-768 | ~19.16ms |
+| Decapsulation | Kyber-768 | ~21.26ms |
+| AES-256 (HW) | AES-256 | < 0.1 ms |
+
+**Total Handshake Latency** (excluding network overhead): ~54.4 ms
+
+## Secure Packet Structure
+
+The system generates a standardized `secure_packet_t` for transmission:
+
+- Kyber-768 Ciphertext: 1088 Bytes
+- AES-256 IV: 16 Bytes
+- Encrypted Payload: 64 Bytes
+- Total Size: 1168 Bytes
 
 ## Current Milestone: Functional PQC Core
 
@@ -40,3 +51,6 @@ To implement a Hybrid Cryptosystem on an ESP32, using Kyber-768 for quantum-resi
 - [x] Full Kyber-768 Handshake (KEM) verified on hardware.
 - [x] Shared secrets match across Encap/Decap.
 - [x] Loopback test stable at 240MHz with 32KB stack.
+- [x] Hardware AES-256 integration complete.
+- [x] Hybrid key derivation bridge stable.
+- [x] Secure Packet "Envelope" defined and benchmarked.
