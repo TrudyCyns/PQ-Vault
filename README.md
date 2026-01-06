@@ -21,6 +21,10 @@ To implement a Hybrid Cryptosystem on an ESP32, using Kyber-768 for quantum-resi
 - TRNG: Integrated hardware True Random Number Generator.
 - Security Logic: Hybrid System (Kyber-768 KEM + AES-256 CBC)
 
+## Major milestone
+
+The core cryptographic pipeline is fully verified end-to-end. The system successfully generates a Kyber-768 shared secret on the ESP32, uses it to encrypt sensor data via hardware AES-256, and transmits it to a Python-based server that performs real-time decryption.
+
 ## Benchmarks
 
 | Operation | Algorithm | Execution Time |
@@ -30,7 +34,7 @@ To implement a Hybrid Cryptosystem on an ESP32, using Kyber-768 for quantum-resi
 | Decapsulation | Kyber-768 | ~21.26ms |
 | AES-256 (HW) | AES-256 | < 0.1 ms |
 
-**Total Handshake Latency** (excluding network overhead): ~54.4 ms
+**Total Handshake Latency** (excluding network overhead): ~54.41 ms
 
 ## Secure Packet Structure
 
@@ -41,16 +45,6 @@ The system generates a standardized `secure_packet_t` for transmission:
 - Encrypted Payload: 64 Bytes
 - Total Size: 1168 Bytes
 
-## Current Milestone: Functional PQC Core
+## Current Tatus
 
-- [x] Environment setup (ESP-IDF / VS Code).
-- [x] PQClean Kyber-768 integrated as an ESP-IDF component (`libpq`).
-- [x] Hardware TRNG bridged to `randombytes`.
-- [x] Successful runtime execution: Kyber-768 KeyPair generation (32KB stack task).
-- [x] KeyGen performance documented (`~14ms`).
-- [x] Full Kyber-768 Handshake (KEM) verified on hardware.
-- [x] Shared secrets match across Encap/Decap.
-- [x] Loopback test stable at 240MHz with 32KB stack.
-- [x] Hardware AES-256 integration complete.
-- [x] Hybrid key derivation bridge stable.
-- [x] Secure Packet "Envelope" defined and benchmarked.
+The project is currently transitioning from Serial-verified loopback to Wireless (UDP) transmission.
